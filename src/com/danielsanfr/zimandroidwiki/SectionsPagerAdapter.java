@@ -1,7 +1,15 @@
 package com.danielsanfr.zimandroidwiki;
 
-import android.graphics.Color;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -9,45 +17,68 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 
 /**
- * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
- * one of the sections/tabs/pages.
+ * A {@link FragmentPagerAdapter} that returns a fragment corresponding to one
+ * of the sections/tabs/pages.
  */
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-	private FragmentManager fragmentManager;
+	private File sdcard;
 	private Boolean mTwoPane;
+	private FragmentManager fragmentManager;
+	public List<String> notebooksList;
+	private Drawable originalBackground;
+	private Context context;
+	
+	public interface MenuVisible {
+		
+		public void setVisibleMenusPage(Boolean visible);
+		
+	};
 
-	public SectionsPagerAdapter(FragmentManager fm, Boolean mTwoPane) {
+	public SectionsPagerAdapter(FragmentManager fm, Boolean mTwoPane,
+			Context context, Drawable originalBackground) {
 		super(fm);
 		fragmentManager = fm;
 		this.mTwoPane = mTwoPane;
+		this.context = context;
+		notebooksList = new ArrayList<String>();
+		sdcard = new File(Environment.getExternalStorageDirectory().toString()
+				+ "/ZimAndroidWiki");
+		String[] listaExistentes = sdcard.list();
+		for (int i = 0; i < listaExistentes.length; i++) {
+			File diretorio = new File(sdcard, listaExistentes[i]);
+			if (diretorio.isDirectory())
+				notebooksList.add(listaExistentes[i]);
+		}
+		Collections.sort(notebooksList);
+		this.originalBackground = originalBackground;
 	}
-	
+
 	private void removeFragmentDetail() {
-	    // Cria novo fragmento e transação
-	    Fragment newFragment = new Fragment();
-	    FragmentTransaction transaction = fragmentManager.beginTransaction();
+		
+		((MenuVisible) context).setVisibleMenusPage(false);
+		// Cria novo fragmento e transação
+		Fragment newFragment = new Fragment();
+		FragmentTransaction transaction = fragmentManager.beginTransaction();
 
-	    // Substitui quaisquer views do tipo fragment_containter com esse fragmento
-	    // e adiciona uma transação ao back stack
-	    transaction.replace(R.id.item_detail_container, newFragment);
-	    transaction.addToBackStack(null);
+		// Substitui quaisquer views do tipo fragment_containter com esse
+		// fragmento
+		// e adiciona uma transação ao back stack
+		transaction.replace(R.id.item_detail_container, newFragment);
+		transaction.addToBackStack(null);
 
-	    // Faz o commit da transação
-	    transaction.commit();
-	}
-	
-	private void resetBackgroundItemList(View lastItemSelected) {
-		lastItemSelected.setBackgroundColor(Color.rgb(231, 231, 231));
+		// Faz o commit da transação
+		transaction.commit();
 	}
 
 	@Override
-	public Fragment getItem(int position) {		
+	public Fragment getItem(int position) {
 		// getItem is called to instantiate the fragment for the given page.
 		// Return a DummySectionFragment (defined as a static inner class
 		// below) with the page number as its lone argument.
 		Fragment fragment = new DummySectionFragment();
 		Bundle args = new Bundle();
+		args.putString("notebook", notebooksList.get(position));
 		args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
 		fragment.setArguments(args);
 		return fragment;
@@ -55,26 +86,23 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
 	@Override
 	public int getCount() {
-		// Show 3 total pages.
-		return 3;
+		return notebooksList.size();
 	}
 
 	@Override
 	public CharSequence getPageTitle(int position) {
-		if(mTwoPane) {
+		if (mTwoPane) {
 			removeFragmentDetail();
-			View lastItemSelected = DummySectionFragment.getLastItemSelected();
-			if(lastItemSelected != null)
+			View lastItemSelected = DummySectionFragment.lastSelected;
+			if (lastItemSelected != null)
 				resetBackgroundItemList(lastItemSelected);
 		}
-		switch (position) {
-		case 0:
-			return "Section 1";
-		case 1:
-			return "Section 2";
-		case 2:
-			return "Section 3";
-		}
-		return "Section NULL";
+		return notebooksList.get(position);
 	}
+
+	@SuppressLint("NewApi")
+	private void resetBackgroundItemList(View lastItemSelected) {
+		lastItemSelected.setBackground(originalBackground);
+	}
+
 }

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/menu_tools" android:title="Ferramentas" android:showAsAction="ifRoom|withText" android:orderInCategory="300">
+        <menu>
+            <item android:id="@+id/item2" android:title="Contagem de palavras"/>
+            <item android:id="@+id/item3" android:title="Iniciar servidor web" /><item android:id="@+id/item4" android:title="Aritmética"/>
+            
+        </menu>
+    </item>
+    
+
+</menu>

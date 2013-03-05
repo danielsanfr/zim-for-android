@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/menu_manage_page" android:showAsAction="never" android:title="Gerenciar página" android:orderInCategory="333">
+        <menu>
+            <item android:id="@+id/rename_page" android:title="Renomear" android:orderInCategory="334"/>
+            <item android:id="@+id/remove_page" android:title="Excluir" android:orderInCategory="335"/>
+        </menu>
+    </item><item android:id="@+id/menu_settings_page" android:title="@string/menu_settings" android:showAsAction="never" android:orderInCategory="343"></item>
+    
+    
+
+</menu>

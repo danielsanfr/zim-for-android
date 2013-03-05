@@ -8,27 +8,74 @@
 package com.danielsanfr.zimandroidwiki;
 
 public final class R {
+    public static final class array {
+        public static final int pref_example_list_titles=0x7f050002;
+        public static final int pref_example_list_values=0x7f050003;
+        public static final int pref_sync_frequency_titles=0x7f050004;
+        public static final int pref_sync_frequency_values=0x7f050005;
+        public static final int syncFrequency=0x7f050000;
+        public static final int syncFrequencyValues=0x7f050001;
+    }
     public static final class attr {
+    }
+    public static final class dimen {
+        public static final int padding_large=0x7f060002;
+        public static final int padding_medium=0x7f060001;
+        public static final int padding_small=0x7f060000;
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int editText=0x7f070005;
-        public static final int editTitle=0x7f070004;
-        public static final int format=0x7f070008;
-        public static final int insert=0x7f07000e;
-        public static final int item1=0x7f070009;
-        public static final int item2=0x7f07000a;
-        public static final int item3=0x7f07000b;
-        public static final int item4=0x7f07000c;
-        public static final int item5=0x7f07000d;
-        public static final int item_detail=0x7f070003;
-        public static final int item_detail_container=0x7f070000;
-        public static final int menu_quit=0x7f070007;
-        public static final int menu_settings=0x7f070006;
-        public static final int pager=0x7f070001;
-        public static final int pager_title_strip=0x7f070002;
+        public static final int create_notebook=0x7f0a0018;
+        public static final int create_page=0x7f0a001d;
+        public static final int dialog_edit=0x7f0a0005;
+        public static final int editName=0x7f0a0007;
+        public static final int editText=0x7f0a0009;
+        public static final int item1=0x7f0a002f;
+        public static final int item10=0x7f0a0028;
+        public static final int item11=0x7f0a0029;
+        public static final int item12=0x7f0a002a;
+        public static final int item13=0x7f0a002b;
+        public static final int item14=0x7f0a002c;
+        public static final int item15=0x7f0a002d;
+        public static final int item2=0x7f0a001f;
+        public static final int item3=0x7f0a0020;
+        public static final int item4=0x7f0a0021;
+        public static final int item5=0x7f0a0023;
+        public static final int item6=0x7f0a0024;
+        public static final int item7=0x7f0a0025;
+        public static final int item8=0x7f0a0026;
+        public static final int item9=0x7f0a0027;
+        public static final int item_detail=0x7f0a0008;
+        public static final int item_detail_container=0x7f0a0000;
+        public static final int listItens=0x7f0a0012;
+        public static final int menu_format=0x7f0a0022;
+        public static final int menu_insert=0x7f0a002e;
+        public static final int menu_manage_notebooks=0x7f0a0017;
+        public static final int menu_manage_page=0x7f0a0013;
+        public static final int menu_quit=0x7f0a001c;
+        public static final int menu_settings=0x7f0a0030;
+        public static final int menu_settings_notebook=0x7f0a001b;
+        public static final int menu_settings_page=0x7f0a0016;
+        public static final int menu_tools=0x7f0a001e;
+        public static final int pager=0x7f0a0001;
+        public static final int pager_title_strip=0x7f0a0002;
+        public static final int progressBar1=0x7f0a0003;
+        public static final int remove_notebook=0x7f0a001a;
+        public static final int remove_page=0x7f0a0015;
+        public static final int rename_notebook=0x7f0a0019;
+        public static final int rename_page=0x7f0a0014;
+        public static final int textTitleDialog=0x7f0a0006;
+        public static final int textView1=0x7f0a0004;
+        public static final int toggleButton1=0x7f0a000a;
+        public static final int toggleButton2=0x7f0a000b;
+        public static final int toggleButton3=0x7f0a000c;
+        public static final int toggleButton4=0x7f0a000d;
+        public static final int toggleButton5=0x7f0a000e;
+        public static final int toggleButton6=0x7f0a000f;
+        public static final int toggleButton7=0x7f0a0010;
+        public static final int toggleButton8=0x7f0a0011;
     }
     public static final class layout {
         public static final int activity_item_detail=0x7f030000;
@@ -42,18 +89,52 @@ public final class R {
          */
         public static final int activity_item_list=0x7f030001;
         public static final int activity_item_twopane=0x7f030002;
-        public static final int fragment_item_detail=0x7f030003;
+        public static final int fragment_edit_dialog=0x7f030003;
+        public static final int fragment_item_detail=0x7f030004;
+        public static final int fragment_list_dialog=0x7f030005;
     }
     public static final class menu {
-        public static final int activity_main=0x7f060000;
-        public static final int formatar=0x7f060001;
-        public static final int inserir=0x7f060002;
-        public static final int menu_context_teste=0x7f060003;
+        public static final int activity_detail=0x7f090000;
+        public static final int activity_main=0x7f090001;
+        public static final int ferramentas=0x7f090002;
+        public static final int formatar=0x7f090003;
+        public static final int inserir=0x7f090004;
+        public static final int menu_context_teste=0x7f090005;
+        public static final int settings=0x7f090006;
     }
     public static final class string {
-        public static final int app_name=0x7f040000;
-        public static final int menu_settings=0x7f040002;
-        public static final int title_item_detail=0x7f040001;
+        public static final int app_name=0x7f070000;
+        public static final int menu_settings=0x7f070002;
+        public static final int pref_default_display_name=0x7f07000f;
+        public static final int pref_description_social_recommendations=0x7f07000d;
+        /**  Example settings for Data & Sync 
+         */
+        public static final int pref_header_data_sync=0x7f070011;
+        /**  Strings related to Settings 
+ Example General settings 
+         */
+        public static final int pref_header_general=0x7f07000b;
+        /**  Example settings for Notifications 
+         */
+        public static final int pref_header_notifications=0x7f070014;
+        public static final int pref_ringtone_silent=0x7f070017;
+        public static final int pref_send_report=0x7f070003;
+        public static final int pref_send_report_summary=0x7f070004;
+        public static final int pref_sync_frequency=0x7f070005;
+        public static final int pref_sync_frequency_summary=0x7f070006;
+        public static final int pref_title_add_friends_to_messages=0x7f070010;
+        public static final int pref_title_display_name=0x7f07000e;
+        public static final int pref_title_new_message_notifications=0x7f070015;
+        public static final int pref_title_ringtone=0x7f070016;
+        public static final int pref_title_social_recommendations=0x7f07000c;
+        public static final int pref_title_sync_frequency=0x7f070012;
+        public static final int pref_title_system_sync_settings=0x7f070013;
+        public static final int pref_title_vibrate=0x7f070018;
+        public static final int pref_update_setting=0x7f07000a;
+        public static final int pref_user_name=0x7f070007;
+        public static final int pref_user_name_summary=0x7f070008;
+        public static final int pref_user_profile=0x7f070009;
+        public static final int title_item_detail=0x7f070001;
     }
     public static final class style {
         /** 
@@ -77,10 +158,17 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f050000;
+        public static final int AppBaseTheme=0x7f080000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f050001;
+        public static final int AppTheme=0x7f080001;
+    }
+    public static final class xml {
+        public static final int pref_data_sync=0x7f040000;
+        public static final int pref_general=0x7f040001;
+        public static final int pref_headers=0x7f040002;
+        public static final int pref_notification=0x7f040003;
+        public static final int settings=0x7f040004;
     }
 }

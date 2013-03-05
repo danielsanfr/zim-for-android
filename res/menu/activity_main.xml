@@ -1,9 +1,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <item
-        android:id="@+id/menu_settings"
-        android:orderInCategory="100"
+    <item android:id="@+id/menu_manage_notebooks" android:title="Gerenciar cadernos" android:orderInCategory="100">
+            <menu>
+                <item android:id="@+id/create_notebook" android:title="Adicionar" android:orderInCategory="101"/>
+                <item android:id="@+id/rename_notebook" android:title="Renomear" android:orderInCategory="102"/>
+                <item android:id="@+id/remove_notebook" android:title="Excluir" android:orderInCategory="103"/>
+            </menu>
+        </item><item
+        android:id="@+id/menu_settings_notebook"
+        android:orderInCategory="104"
         android:showAsAction="never"
-        android:title="@string/menu_settings"/><item android:id="@+id/menu_quit" android:title="Quit" android:orderInCategory="101"/>
+        android:title="@string/menu_settings"/><item android:id="@+id/menu_quit" android:title="Quit" android:orderInCategory="999"/>
+        <item android:id="@+id/create_page" android:orderInCategory="34" android:showAsAction="ifRoom|withText" android:title="+Página"></item>
+        
 	
 </menu>

@@ -14,7 +14,6 @@ import android.widget.EditText;
  */
 public class ItemDetailFragment extends Fragment {
 	
-	private EditText edtTitle;
 	private EditText edtText;
 	/**
 	 * The fragment argument representing the item ID that this fragment
@@ -40,11 +39,7 @@ public class ItemDetailFragment extends Fragment {
 //			((TextView) rootView.findViewById(R.id.item_detail))
 //					.setText(mItem.content);
 //		}
-		
-		edtTitle = (EditText) rootView.findViewById(R.id.editTitle);
 		edtText = (EditText) rootView.findViewById(R.id.editText);
-		
-		edtTitle.setText("");
 		edtText.setText(getArguments().getString(ARG_CONTENT));
 
 		return rootView;

@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item android:id="@+id/format" android:showAsAction="ifRoom|withText" android:title="Formatar">
+    <item android:id="@+id/menu_format" android:showAsAction="ifRoom|withText" android:title="Formatar" android:orderInCategory="200">
         <menu>
-            <item android:id="@+id/item1" android:title="Cabeçalho 1"/>
-            <item android:id="@+id/item2" android:title="Cabeçalho 2"/>
-            <item android:id="@+id/item3" android:title="Cabeçalho 3"/>
-            <item android:id="@+id/item4" android:title="Cabeçalho 4"/>
-            <item android:id="@+id/item5" android:title="Cabeçalho 5"/>
+           <item android:id="@+id/item2" android:title="Cabeçalho">
+            <menu>
+                <item android:id="@+id/item3" android:title="Nível 1"/>
+                <item android:id="@+id/item4" android:title="Nível 2"/>
+                <item android:id="@+id/item5" android:title="Nível 3"/>
+                <item android:id="@+id/item6" android:title="Nível 4"/>
+                <item android:id="@+id/item7" android:title="Nível 5"/>
+            </menu>
+        </item>
+	    <item android:id="@+id/item8" android:title="Negrito"></item>
+	    <item android:id="@+id/item9" android:title="Ênfase"></item>
+	    <item android:id="@+id/item10" android:title="Marcar"></item>
+	    <item android:id="@+id/item11" android:title="Riscar"/>
+	    <item android:id="@+id/item12" android:title="Verbatin"/>
+	    <item android:id="@+id/item13" android:title="Sobrescrito"/>
+	    <item android:id="@+id/item14" android:title="Subescrito"/>
+	    <item android:id="@+id/item15" android:title="Limpar formatação"/> 
         </menu>
     </item>
 </menu>
