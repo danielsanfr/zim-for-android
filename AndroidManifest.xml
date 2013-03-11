@@ -18,7 +18,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.danielsanfr.zimandroidwiki.ItemListActivity"
+            android:name="com.danielsanfr.zimandroidwiki.view.ItemListActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,23 +26,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.danielsanfr.zimandroidwiki.ItemDetailActivity"
+            android:name="com.danielsanfr.zimandroidwiki.view.ItemDetailActivity"
             android:label="@string/title_item_detail"
             android:parentActivityName=".ItemListActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ItemListActivity" />
+                android:value="com.danielsanfr.zimandroidwiki.view.ItemListActivity" />
         </activity>
         <activity
-            android:name="com.danielsanfr.zimandroidwiki.GeneralSettings"
+            android:name="com.danielsanfr.zimandroidwiki.view.GeneralSettings"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.danielsanfr.zimandroidwiki.PageSettings"
-            android:label="@string/app_name" >
-        </activity>
-        <activity
-            android:name="com.danielsanfr.zimandroidwiki.CreateNotebook"
+            android:name="com.danielsanfr.zimandroidwiki.view.PageSettings"
             android:label="@string/app_name" >
         </activity>
     </application>

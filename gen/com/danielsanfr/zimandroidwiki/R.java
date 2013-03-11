@@ -27,47 +27,48 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int create_notebook=0x7f0a0018;
-        public static final int create_page=0x7f0a001d;
+        public static final int chkItens=0x7f0a0013;
+        public static final int create_notebook=0x7f0a001a;
+        public static final int create_page=0x7f0a001f;
         public static final int dialog_edit=0x7f0a0005;
         public static final int editName=0x7f0a0007;
         public static final int editText=0x7f0a0009;
-        public static final int item1=0x7f0a002f;
-        public static final int item10=0x7f0a0028;
-        public static final int item11=0x7f0a0029;
-        public static final int item12=0x7f0a002a;
-        public static final int item13=0x7f0a002b;
-        public static final int item14=0x7f0a002c;
-        public static final int item15=0x7f0a002d;
-        public static final int item2=0x7f0a001f;
-        public static final int item3=0x7f0a0020;
-        public static final int item4=0x7f0a0021;
-        public static final int item5=0x7f0a0023;
-        public static final int item6=0x7f0a0024;
-        public static final int item7=0x7f0a0025;
-        public static final int item8=0x7f0a0026;
-        public static final int item9=0x7f0a0027;
+        public static final int item1=0x7f0a0031;
+        public static final int item10=0x7f0a002a;
+        public static final int item11=0x7f0a002b;
+        public static final int item12=0x7f0a002c;
+        public static final int item13=0x7f0a002d;
+        public static final int item14=0x7f0a002e;
+        public static final int item15=0x7f0a002f;
+        public static final int item2=0x7f0a0021;
+        public static final int item3=0x7f0a0022;
+        public static final int item4=0x7f0a0023;
+        public static final int item5=0x7f0a0025;
+        public static final int item6=0x7f0a0026;
+        public static final int item7=0x7f0a0027;
+        public static final int item8=0x7f0a0028;
+        public static final int item9=0x7f0a0029;
         public static final int item_detail=0x7f0a0008;
         public static final int item_detail_container=0x7f0a0000;
         public static final int listItens=0x7f0a0012;
-        public static final int menu_format=0x7f0a0022;
-        public static final int menu_insert=0x7f0a002e;
-        public static final int menu_manage_notebooks=0x7f0a0017;
-        public static final int menu_manage_page=0x7f0a0013;
-        public static final int menu_quit=0x7f0a001c;
-        public static final int menu_settings=0x7f0a0030;
-        public static final int menu_settings_notebook=0x7f0a001b;
-        public static final int menu_settings_page=0x7f0a0016;
-        public static final int menu_tools=0x7f0a001e;
+        public static final int menu_format=0x7f0a0024;
+        public static final int menu_insert=0x7f0a0030;
+        public static final int menu_manage_notebooks=0x7f0a0019;
+        public static final int menu_manage_page=0x7f0a0015;
+        public static final int menu_quit=0x7f0a001e;
+        public static final int menu_settings=0x7f0a0032;
+        public static final int menu_settings_notebook=0x7f0a001d;
+        public static final int menu_settings_page=0x7f0a0018;
+        public static final int menu_tools=0x7f0a0020;
         public static final int pager=0x7f0a0001;
         public static final int pager_title_strip=0x7f0a0002;
         public static final int progressBar1=0x7f0a0003;
-        public static final int remove_notebook=0x7f0a001a;
-        public static final int remove_page=0x7f0a0015;
-        public static final int rename_notebook=0x7f0a0019;
-        public static final int rename_page=0x7f0a0014;
+        public static final int remove_notebook=0x7f0a001c;
+        public static final int remove_page=0x7f0a0017;
+        public static final int rename_notebook=0x7f0a001b;
+        public static final int rename_page=0x7f0a0016;
+        public static final int textSync=0x7f0a0004;
         public static final int textTitleDialog=0x7f0a0006;
-        public static final int textView1=0x7f0a0004;
         public static final int toggleButton1=0x7f0a000a;
         public static final int toggleButton2=0x7f0a000b;
         public static final int toggleButton3=0x7f0a000c;
@@ -76,6 +77,7 @@ public final class R {
         public static final int toggleButton6=0x7f0a000f;
         public static final int toggleButton7=0x7f0a0010;
         public static final int toggleButton8=0x7f0a0011;
+        public static final int txvItens=0x7f0a0014;
     }
     public static final class layout {
         public static final int activity_item_detail=0x7f030000;
@@ -92,6 +94,7 @@ public final class R {
         public static final int fragment_edit_dialog=0x7f030003;
         public static final int fragment_item_detail=0x7f030004;
         public static final int fragment_list_dialog=0x7f030005;
+        public static final int item_list_dialog=0x7f030006;
     }
     public static final class menu {
         public static final int activity_detail=0x7f090000;

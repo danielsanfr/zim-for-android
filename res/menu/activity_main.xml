@@ -12,6 +12,5 @@
         android:showAsAction="never"
         android:title="@string/menu_settings"/><item android:id="@+id/menu_quit" android:title="Quit" android:orderInCategory="999"/>
         <item android:id="@+id/create_page" android:orderInCategory="34" android:showAsAction="ifRoom|withText" android:title="+Página"></item>
-        
 	
 </menu>
