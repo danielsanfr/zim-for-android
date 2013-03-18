@@ -1,6 +1,7 @@
 package com.danielsanfr.zimandroidwiki.view;
 
 import com.danielsanfr.zimandroidwiki.R;
+import com.danielsanfr.zimandroidwiki.controller.command.EditCommand;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -23,19 +24,23 @@ public class SimpleEditDialog extends DialogFragment implements
 	public static final String ARG_TITLE_BUTTON = "button_ok_name";
 	public static final String ARG_TEXT = "content";
 	private EditText edtName;
+	private EditCommand command;
 	private SimpleEditDialogListener simpleEditDialogListener;
 
 	public interface SimpleEditDialogListener {
-		void onFinishEditDialog(String inPaginationDialogFragmentputText);
+		void onFinishEditDialog(EditCommand command,
+				String inPaginationDialogFragmentputText);
 	}
 
 	public SimpleEditDialog() {
 		// Empty constructor required for DialogFragment
 	}
 
-	public void show(SimpleEditDialogListener simpleEditDialogListener,
+	public void show(EditCommand command,
+			SimpleEditDialogListener simpleEditDialogListener,
 			FragmentManager manager, String tag) {
 		// TODO Auto-generated method stub
+		this.command = command;
 		this.simpleEditDialogListener = (SimpleEditDialogListener) simpleEditDialogListener;
 		super.show(manager, tag);
 	}
@@ -79,8 +84,8 @@ public class SimpleEditDialog extends DialogFragment implements
 			// SimpleListDialogListener activity = (SimpleListDialogListener)
 			// getActivity();
 			// activity.onFinishEditDialog(edtName.getText().toString());
-			this.simpleEditDialogListener.onFinishEditDialog(edtName.getText()
-					.toString());
+			this.simpleEditDialogListener.onFinishEditDialog(command, edtName
+					.getText().toString());
 			this.dismiss();
 			return true;
 		}

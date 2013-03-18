@@ -47,11 +47,21 @@ public final class ManageFiles {
 		File notebook = new File(ROOT_DIRECTORY, directoryName);
 		return notebook.mkdir();
 	}
-
+	
 	public Boolean createFile(String notebook, String fileName)
 			throws IOException {
 		File file = new File(ROOT_DIRECTORY, notebook + "/" + fileName);
 		return file.createNewFile();
+	}
+
+	public Boolean createFile(String notebook, String fileName, String content)
+			throws IOException {
+		File file = new File(ROOT_DIRECTORY, notebook + "/" + fileName);
+		Boolean create = file.createNewFile();
+		if(!create && file.isDirectory())
+			return create;
+		salveContentInFile(file, content);
+		return create;
 	}
 
 	public Boolean salveContentInFile(File file, String content) {

@@ -1,6 +1,7 @@
 package com.danielsanfr.zimandroidwiki.view;
 
 import com.danielsanfr.zimandroidwiki.R;
+import com.danielsanfr.zimandroidwiki.controller.command.EditCommand;
 
 import android.app.FragmentManager;
 import android.content.Intent;
@@ -65,9 +66,9 @@ public class ItemDetailActivity extends FragmentActivity implements
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_main, menu);
 		getMenuInflater().inflate(R.menu.activity_detail, menu);
-		getMenuInflater().inflate(R.menu.formatar, menu);
 		getMenuInflater().inflate(R.menu.inserir, menu);
 		getMenuInflater().inflate(R.menu.ferramentas, menu);
+		getMenuInflater().inflate(R.menu.discard, menu);
 		menu.findItem(R.id.menu_manage_notebooks).setVisible(false);
 		menu.findItem(R.id.menu_settings_notebook).setVisible(false);
 		menu.findItem(R.id.menu_quit).setVisible(false);
@@ -121,7 +122,7 @@ public class ItemDetailActivity extends FragmentActivity implements
 	}
 
 	@Override
-	public void onFinishEditDialog(String inputText) {
+	public void onFinishEditDialog(EditCommand command, String inputText) {
 		// TODO Auto-generated method stub
 		Toast.makeText(this, "Hi, " + inputText, Toast.LENGTH_SHORT).show();
 	}

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.danielsanfr.zimandroidwiki.R;
+import com.danielsanfr.zimandroidwiki.controller.command.ListCommand;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -26,19 +27,22 @@ public class SimpleListDialog extends DialogFragment {
 	public static final String ARG_TITLE_BUTTON = "button_ok_name";
 	public static final String ARG_LIST = "content_list";
 	private ListView listItens;
+	private ListCommand command;
 	private SimpleListDialogListener simpleListDialogListener;
 
 	public interface SimpleListDialogListener {
-		void onFinishListDialog(List<String> selectedItems);
+		void onFinishListDialog(ListCommand command, List<String> selectedItems);
 	}
 
 	public SimpleListDialog() {
 		// Empty constructor required for DialogFragment
 	}
 
-	public void show(SimpleListDialogListener simpleListDialogListener,
+	public void show(ListCommand command,
+			SimpleListDialogListener simpleListDialogListener,
 			FragmentManager manager, String tag) {
 		// TODO Auto-generated method stub
+		this.command = command;
 		this.simpleListDialogListener = simpleListDialogListener;
 		super.show(manager, tag);
 	}
@@ -46,7 +50,8 @@ public class SimpleListDialog extends DialogFragment {
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-		final List<String> itemList = getArguments().getStringArrayList(ARG_LIST);
+		final List<String> itemList = getArguments().getStringArrayList(
+				ARG_LIST);
 		final List<String> selectedItems = new ArrayList<String>();
 		LayoutInflater inflater = LayoutInflater.from(getActivity());
 		final View view = inflater.inflate(R.layout.fragment_list_dialog, null);
@@ -75,24 +80,26 @@ public class SimpleListDialog extends DialogFragment {
 							Toast.makeText(getActivity(),
 									"Checbox de " + item + " marcado!",
 									Toast.LENGTH_SHORT).show();
-							if(!selectedItems.contains(item))
+							if (!selectedItems.contains(item))
 								selectedItems.add(item);
 						} else {
 							Toast.makeText(getActivity(),
 									"Checbox de " + item + " desmarcado!",
 									Toast.LENGTH_SHORT).show();
-							if(selectedItems.contains(item))
+							if (selectedItems.contains(item))
 								selectedItems.remove(item);
 						}
 					}
 
 				});
-				if(selectedItems.contains(item)) {
-				    chk.setChecked(true);
+				if (selectedItems.contains(item)) {
+					chk.setChecked(true);
 				} else {
-				    chk.setChecked(false);
+					chk.setChecked(false);
 				}
 				TextView txv = (TextView) view.findViewById(R.id.txvItens);
+				txv.setTextAppearance(getContext(),
+						android.R.style.TextAppearance_Medium);
 				txv.setText(item);
 				return view;
 			}
@@ -100,7 +107,7 @@ public class SimpleListDialog extends DialogFragment {
 			@Override
 			public long getItemId(int position) {
 				// TODO Auto-generated method stub
-//				return super.getItemId(position);
+				// return super.getItemId(position);
 				return position;
 			}
 
@@ -125,7 +132,8 @@ public class SimpleListDialog extends DialogFragment {
 							public void onClick(DialogInterface dialog,
 									int which) {
 								// validation code
-								simpleListDialogListener.onFinishListDialog(selectedItems);
+								simpleListDialogListener.onFinishListDialog(
+										command, selectedItems);
 							}
 						})
 				.setNegativeButton("Cancelar",

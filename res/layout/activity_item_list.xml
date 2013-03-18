@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
-            android:background="#ff8a01"
+            android:background="#ff8800"
             android:paddingBottom="4dp"
             android:paddingTop="4dp"
             android:textColor="#fff" />
@@ -40,7 +40,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ff8a01" >
+        android:background="#ff8800" >
 
         <ProgressBar
             android:id="@+id/progressBar1"

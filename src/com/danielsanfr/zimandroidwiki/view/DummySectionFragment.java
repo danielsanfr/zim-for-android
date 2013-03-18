@@ -22,6 +22,9 @@ import android.widget.AdapterView.OnItemClickListener;
 public class DummySectionFragment extends Fragment {
 
 	private static ListView listView;
+	
+	private Boolean changed;
+	
 	public static final String ARG_LIST_ITENS = "list_itens";
 	/**
 	 * The fragment argument representing the section number for this fragment.
@@ -68,6 +71,18 @@ public class DummySectionFragment extends Fragment {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public int getPosition() {
+		return getArguments().getInt("POSITION");
+	}
+	
+	public Boolean getChanged() {
+		return changed;
+	}
+
+	public void setChanged(Boolean changed) {
+		this.changed = changed;
+	}
+
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
