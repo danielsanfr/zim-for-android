@@ -7,12 +7,12 @@ import com.danielsanfr.zimandroidwiki.R;
 import com.danielsanfr.zimandroidwiki.model.NotebookModel;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.FragmentTransaction;
+import android.view.MenuItem;
 import android.view.View;
 
 /**
@@ -24,38 +24,39 @@ public class SectionsStatePagerAdapter extends FragmentStatePagerAdapter {
 	private Boolean mTwoPane;
 	private FragmentManager fragmentManager;
 	private List<NotebookModel> notebooks;
-	private Context context;
-
-	public interface MenuVisible {
-
-		public void setVisibleMenusPage(Boolean visible);
-
-	};
+	private List<MenuItem> observers;
 
 	public SectionsStatePagerAdapter(FragmentManager fm, Boolean mTwoPane,
-			Context context, List<NotebookModel> notebooks) {
+			List<NotebookModel> notebooks) {
 		super(fm);
 		fragmentManager = fm;
 		this.mTwoPane = mTwoPane;
-		this.context = context;
 		this.notebooks = notebooks;
-		// setListNotebooksName();
+		observers = new ArrayList<MenuItem>();
 	}
 
-	// private void setListNotebooksName() {
-	// notebooksName = new ArrayList<String>();
-	// for (Notebook notebook : notebooks) {
-	// notebooksName.add(notebook.getName());
-	// }
-	// }
-	
+	public void addObserver(MenuItem observer) {
+		observers.add(observer);
+	}
+
+	public void deleteObserver(MenuItem observer) {
+		observers.remove(observer);
+	}
+
+	public void notifyObservers(Boolean visible) {
+		for (MenuItem observer : observers) {
+			observer.setVisible(visible);
+		}
+	}
+
 	public void setNotebooks(List<NotebookModel> notebooks) {
 		this.notebooks = notebooks;
 	}
 
 	private void removeFragmentDetail() {
 
-		((MenuVisible) context).setVisibleMenusPage(false);
+		notifyObservers(false);
+		// ((MenuVisible) context).setVisibleMenusPage(false);
 		// Cria novo fragmento e transação
 		Fragment newFragment = new Fragment();
 		FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -85,7 +86,7 @@ public class SectionsStatePagerAdapter extends FragmentStatePagerAdapter {
 		fragment.setArguments(args);
 		return fragment;
 	}
-	
+
 	@Override
 	public int getItemPosition(Object object) {
 		// TODO Auto-generated method stub

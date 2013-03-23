@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item android:id="@+id/insert" android:icon="@drawable/ic_action_attachment" android:showAsAction="always|withText" android:title="Insert">
+        <menu>
+            <item android:id="@+id/data_and_time" android:title="Date and time" />
+            <item android:id="@+id/image" android:title="Image" />
+            <item android:id="@+id/symbol" android:title="Symbol" />
+            <item android:id="@+id/screenshot" android:title="Screenshot" />
+            <item android:id="@+id/text_from_file" android:title="Text from a file" />
+            <item android:id="@+id/annex" android:title="Annex" />
+            <item android:id="@+id/link" android:title="Link" />
+        </menu>
+    </item><item
+        android:id="@+id/search"
+        android:icon="@drawable/ic_action_search"
+        android:showAsAction="always"
+        android:title="Search">
+    </item>
+    
+    
+    <item
+        android:id="@+id/undo"
+        android:icon="@drawable/ic_action_undo"
+        android:showAsAction="always"
+        android:title="Undo">
+    </item>
+    <item
+        android:id="@+id/remove"
+        android:icon="@drawable/ic_action_discard"
+        android:showAsAction="always"
+        android:title="Remove">
+        <menu>
+            <item
+                android:id="@+id/remove_notebook"
+                android:title="Remove notebook"/>
+            <item
+                android:id="@+id/remove_notebooks"
+                android:title="Remove notebooks"/>
+            <item
+                android:id="@+id/remove_page"
+                android:title="Remove page"/>
+            <item
+                android:id="@+id/remove_pages"
+                android:title="Remove pages"/>
+        </menu>
+    </item>
+    <item
+        android:id="@+id/add"
+        android:icon="@drawable/ic_action_new"
+        android:showAsAction="always"
+        android:title="Add">
+        <menu>
+            <item
+                android:id="@+id/new_page"
+                android:title="New page"/>
+            <item
+                android:id="@+id/new_subPage"
+                android:title="New sub-page"/>
+            <item
+                android:id="@+id/new_notebook"
+                android:title="New notebook"/>
+        </menu>
+    </item><item android:id="@+id/tools" android:title="Tools">
+        <menu>
+            <item android:id="@+id/word_count" android:title="word count..." />
+            <item android:id="@+id/open_the_attachment_folder" android:title="Open the attachment folder" />
+            <item android:id="@+id/open_the_folder_notebook" android:title="Open the folder notebook" />
+            <item android:id="@+id/start_web_server" android:title="start web server" />
+            <item android:id="@+id/assess_math" android:title="Assess math" />
+            <item android:id="@+id/edit_source" android:title="Edit source" />
+            <item android:id="@+id/sort_lines" android:title="Sort lines" />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/manage_page"
+        android:title="Manage page">
+        <menu>
+            <item
+                android:id="@+id/rename_page"
+                android:title="Rename page"/>
+            <item
+                android:id="@+id/move_page"
+                android:title="Move page"/>
+        </menu>
+    </item>
+    <item
+        android:id="@+id/record_a_copy"
+        android:title="Record a copy">
+    </item>
+    <item
+        android:id="@+id/export"
+        android:title="Export">
+    </item>
+    <item
+        android:id="@+id/send_to"
+        android:title="Send to...">
+    </item>
+    <item
+        android:id="@+id/visualize"
+        android:title="Visualize">
+        <menu>
+            <item
+                android:id="@+id/notebook_editable"
+                android:title="Notebook editable"/>
+            <item
+                android:id="@+id/enlarge"
+                android:title="Enlarge"/>
+            <item
+                android:id="@+id/decrease"
+                android:title="Decrease"/>
+            <item
+                android:id="@+id/regular_size"
+                android:title="Regular size"/>
+        </menu>
+    </item>
+    <item
+        android:id="@+id/properties"
+        android:title="Properties">
+    </item>
+    <item
+        android:id="@+id/settings"
+        android:title="Settings">
+    </item>
+    <item
+        android:id="@+id/quit"
+        android:title="Quit">
+    </item>
+
+</menu>

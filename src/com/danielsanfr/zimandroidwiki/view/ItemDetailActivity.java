@@ -3,14 +3,12 @@ package com.danielsanfr.zimandroidwiki.view;
 import com.danielsanfr.zimandroidwiki.R;
 import com.danielsanfr.zimandroidwiki.controller.command.EditCommand;
 
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 /**
  * An activity representing a single Item detail screen. This activity is only
@@ -64,27 +62,13 @@ public class ItemDetailActivity extends FragmentActivity implements
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.activity_main, menu);
-		getMenuInflater().inflate(R.menu.activity_detail, menu);
-		getMenuInflater().inflate(R.menu.inserir, menu);
-		getMenuInflater().inflate(R.menu.ferramentas, menu);
-		getMenuInflater().inflate(R.menu.discard, menu);
-		menu.findItem(R.id.menu_manage_notebooks).setVisible(false);
-		menu.findItem(R.id.menu_settings_notebook).setVisible(false);
-		menu.findItem(R.id.menu_quit).setVisible(false);
-		menu.findItem(R.id.create_page).setVisible(false);
+		getMenuInflater().inflate(R.menu.main, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case R.id.rename_page:
-			renamePage();
-			break;
-		case R.id.menu_settings_page:
-			showSettingsPage();
-			break;
 		case android.R.id.home:
 			// This ID represents the Home or Up button. In the case of this
 			// activity, the Up button is shown. Use NavUtils to allow users
@@ -100,31 +84,11 @@ public class ItemDetailActivity extends FragmentActivity implements
 		return super.onOptionsItemSelected(item);
 	}
 
-	private void showSettingsPage() {
-		Intent intent = new Intent(this, PageSettings.class);
-		Bundle bundle = new Bundle();
-		bundle.putString(ItemDetailFragment.ARG_CONTENT, getIntent()
-				.getStringExtra(ItemDetailFragment.ARG_CONTENT));
-		startActivityForResult(intent, RESULT_SETTINGS);
-	}
-
-	private void renamePage() {
-		FragmentManager fm = getFragmentManager();
-		SimpleEditDialog notebookRename = new SimpleEditDialog();
-		Bundle arguments = new Bundle();
-		arguments.putString(SimpleEditDialog.ARG_TITLE_DIALOG,
-				"Novo nome da página");
-		arguments.putString(SimpleEditDialog.ARG_TITLE_BUTTON, "Renomear");
-		arguments.putString(SimpleEditDialog.ARG_TEXT, getIntent()
-				.getStringExtra(ItemDetailFragment.ARG_CONTENT));
-		notebookRename.setArguments(arguments);
-		notebookRename.show(fm, "fragment_edit_name");
-	}
-
 	@Override
-	public void onFinishEditDialog(EditCommand command, String inputText) {
+	public void onFinishEditDialog(EditCommand command,
+			String inPaginationDialogFragmentputText) {
 		// TODO Auto-generated method stub
-		Toast.makeText(this, "Hi, " + inputText, Toast.LENGTH_SHORT).show();
+		
 	}
 
 }

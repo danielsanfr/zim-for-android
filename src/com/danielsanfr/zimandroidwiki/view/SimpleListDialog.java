@@ -19,7 +19,6 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class SimpleListDialog extends DialogFragment {
 
@@ -77,15 +76,9 @@ public class SimpleListDialog extends DialogFragment {
 						CheckBox chk = (CheckBox) v;
 						String item = (String) chk.getTag();
 						if (chk.isChecked()) {
-							Toast.makeText(getActivity(),
-									"Checbox de " + item + " marcado!",
-									Toast.LENGTH_SHORT).show();
 							if (!selectedItems.contains(item))
 								selectedItems.add(item);
 						} else {
-							Toast.makeText(getActivity(),
-									"Checbox de " + item + " desmarcado!",
-									Toast.LENGTH_SHORT).show();
 							if (selectedItems.contains(item))
 								selectedItems.remove(item);
 						}

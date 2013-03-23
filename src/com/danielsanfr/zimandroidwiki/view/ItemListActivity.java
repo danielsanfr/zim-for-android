@@ -7,14 +7,18 @@ import java.util.List;
 
 import com.danielsanfr.zimandroidwiki.R;
 import com.danielsanfr.zimandroidwiki.controller.EditDialogController;
-import com.danielsanfr.zimandroidwiki.controller.ListDialogController;
+import com.danielsanfr.zimandroidwiki.controller.CheckBoxListDialogController;
 import com.danielsanfr.zimandroidwiki.controller.ManageFiles;
+import com.danielsanfr.zimandroidwiki.controller.TextDialogController;
 import com.danielsanfr.zimandroidwiki.controller.command.CreateNotebook;
 import com.danielsanfr.zimandroidwiki.controller.command.CreatePage;
 import com.danielsanfr.zimandroidwiki.controller.command.EditCommand;
 import com.danielsanfr.zimandroidwiki.controller.command.ListCommand;
+import com.danielsanfr.zimandroidwiki.controller.command.RemoveNotebook;
 import com.danielsanfr.zimandroidwiki.controller.command.RemoveNotebooks;
 import com.danielsanfr.zimandroidwiki.controller.command.RemovePage;
+import com.danielsanfr.zimandroidwiki.controller.command.RemovePages;
+import com.danielsanfr.zimandroidwiki.controller.command.TextCommand;
 import com.danielsanfr.zimandroidwiki.model.NotebookModel;
 
 import android.annotation.SuppressLint;
@@ -52,13 +56,12 @@ import android.widget.Toast;
 public class ItemListActivity extends FragmentActivity implements
 		DummySectionFragment.Callbacks,
 		SimpleEditDialog.SimpleEditDialogListener,
-		SimpleListDialog.SimpleListDialogListener,
-		SectionsStatePagerAdapter.MenuVisible {
+		SimpleTextDialog.SimpleTextDialogListener,
+		CheckBoxListDialog.CheckBoxListDialogListener {
 
 	private static final int RESULT_SETTINGS = 1;
+	private int pageSelectedID;
 	private List<NotebookModel> notebooks;
-	private List<MenuItem> listMenuNotebook;
-	private List<MenuItem> listMenuPage;
 	public static Drawable originalBackground;
 
 	/**
@@ -87,9 +90,11 @@ public class ItemListActivity extends FragmentActivity implements
 			editDialogCreateNotebook.showDialog(getFragmentManager(),
 					"Nome do caderno", "Criar");
 		}
+
+		// Show the Up button in the action bar.
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+
 		notebooks = new ArrayList<NotebookModel>();
-		listMenuNotebook = new ArrayList<MenuItem>();
-		listMenuPage = new ArrayList<MenuItem>();
 		// CmenusListreate the adapter that will return a fragment for each of
 		// the three
 		// primary sections of the app.
@@ -100,8 +105,7 @@ public class ItemListActivity extends FragmentActivity implements
 		originalBackground = mViewPager.getBackground();
 		mSectionsStatePagerAdapter = new SectionsStatePagerAdapter(
 				getSupportFragmentManager(),
-				findViewById(R.id.item_detail_container) != null, this,
-				notebooks);
+				findViewById(R.id.item_detail_container) != null, notebooks);
 		// Set up the ViewPager with the sections adapter.
 		mViewPager.setAdapter(mSectionsStatePagerAdapter);
 		// mViewPager.setCurrentItem(1);
@@ -152,36 +156,37 @@ public class ItemListActivity extends FragmentActivity implements
 		}
 	}
 
+	@SuppressLint("NewApi")
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 
-		getMenuInflater().inflate(R.menu.activity_main, menu);
-		getMenuInflater().inflate(R.menu.activity_detail, menu);
-		getMenuInflater().inflate(R.menu.discard, menu);
-		getMenuInflater().inflate(R.menu.inserir, menu);
-		getMenuInflater().inflate(R.menu.ferramentas, menu);
-		listMenuNotebook.add(menu.findItem(R.id.menu_manage_notebooks));
-		listMenuNotebook.add(menu.findItem(R.id.menu_settings_notebook));
-		listMenuNotebook.add(menu.findItem(R.id.create_page));
-		listMenuPage.add(menu.findItem(R.id.menu_settings_page));
-		listMenuPage.add(menu.findItem(R.id.menu_manage_page));
-		listMenuPage.add(menu.findItem(R.id.menu_tools));
-		listMenuPage.add(menu.findItem(R.id.menu_insert));
-		listMenuPage.add(menu.findItem(R.id.menu_discard));
-		setVisibleMenusPage(false);
+		getMenuInflater().inflate(R.menu.main, menu);
+
+		mSectionsStatePagerAdapter.addObserver(menu.findItem(R.id.insert));
+		mSectionsStatePagerAdapter.addObserver(menu.findItem(R.id.undo));
+		mSectionsStatePagerAdapter.addObserver(menu.findItem(R.id.remove_page));
+		mSectionsStatePagerAdapter.addObserver(menu.findItem(R.id.new_subPage));
+
+		// Tools menus
+		mSectionsStatePagerAdapter.addObserver(menu.findItem(R.id.word_count));
+		mSectionsStatePagerAdapter.addObserver(menu
+				.findItem(R.id.open_the_attachment_folder));
+		mSectionsStatePagerAdapter.addObserver(menu
+				.findItem(R.id.open_the_folder_notebook));
+		mSectionsStatePagerAdapter.addObserver(menu.findItem(R.id.assess_math));
+		mSectionsStatePagerAdapter.addObserver(menu.findItem(R.id.edit_source));
+		mSectionsStatePagerAdapter.addObserver(menu.findItem(R.id.sort_lines));
+
+		mSectionsStatePagerAdapter.addObserver(menu.findItem(R.id.manage_page));
+		mSectionsStatePagerAdapter.addObserver(menu
+				.findItem(R.id.record_a_copy));
+		mSectionsStatePagerAdapter.addObserver(menu.findItem(R.id.send_to));
+		mSectionsStatePagerAdapter.addObserver(menu.findItem(R.id.visualize));
+
+		mSectionsStatePagerAdapter.notifyObservers(false);
+
 		return super.onCreateOptionsMenu(menu);
-	}
-
-	@Override
-	public void setVisibleMenusPage(Boolean visible) {
-		for (MenuItem menuItem : listMenuNotebook) {
-			menuItem.setVisible(!visible);
-		}
-
-		for (MenuItem menuItem : listMenuPage) {
-			menuItem.setVisible(visible);
-		}
 	}
 
 	@Override
@@ -203,19 +208,19 @@ public class ItemListActivity extends FragmentActivity implements
 		// edtText.setText(spanString);
 		//
 		// Toast.makeText(this, textoSelecionado, Toast.LENGTH_SHORT).show ();
-		getMenuInflater().inflate(R.menu.menu_context_teste, menu);
+		//getMenuInflater().inflate(R.menu.menu_context_teste, menu);
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// TODO Auto-generated
 		switch (item.getItemId()) {
-		case R.id.menu_settings_notebook:
+		case R.id.settings:
 			Intent intent = new Intent(this, GeneralSettings.class);
 			startActivityForResult(intent, RESULT_SETTINGS);
 			// startActivity(intent);
 			break;
-		case R.id.create_page:
+		case R.id.new_page:
 			EditDialogController editDialogCreatePage = new EditDialogController(
 					new CreatePage(notebooks.get(mViewPager.getCurrentItem())),
 					this);
@@ -225,47 +230,49 @@ public class ItemListActivity extends FragmentActivity implements
 		case R.id.rename_page:
 			break;
 		case R.id.remove_page:
-			ListDialogController listDialogRemovePage = new ListDialogController(
-					new RemovePage(notebooks.get(mViewPager.getCurrentItem())),
+			TextDialogController textDialogRemovePage = new TextDialogController(
+					new RemovePage(notebooks.get(mViewPager.getCurrentItem()), pageSelectedID), this);
+			textDialogRemovePage.showDialog(getFragmentManager(),
+					"Excluir página atual?");
+			break;
+		case R.id.remove_pages:
+			CheckBoxListDialogController listDialogRemovePage = new CheckBoxListDialogController(
+					new RemovePages(notebooks.get(mViewPager.getCurrentItem())),
 					this);
 			listDialogRemovePage.showDialog(getFragmentManager(), notebooks
 					.get(mViewPager.getCurrentItem()).getListNameOfPages(),
 					"Excluir páginas", "Excluir");
 			break;
-		case R.id.menu_settings_page:
-			showSettingsPage();
-			break;
-		case R.id.create_notebook:
+		case R.id.new_notebook:
 			EditDialogController editDialogCreateNotebook = new EditDialogController(
 					new CreateNotebook(), this);
 			editDialogCreateNotebook.showDialog(getFragmentManager(),
 					"Nome do caderno", "Criar");
 			break;
-		case R.id.rename_notebook:
-			break;
 		case R.id.remove_notebook:
+			TextDialogController textDialogRemoveNotebook = new TextDialogController(
+					new RemoveNotebook(notebooks.get(
+							mViewPager.getCurrentItem()).getName()), this);
+			textDialogRemoveNotebook.showDialog(getFragmentManager(),
+					"Excluir caderno atual?");
+			break;
+		case R.id.remove_notebooks:
 			List<String> notebookNames = new ArrayList<String>();
 			for (NotebookModel notebookModel : notebooks) {
 				notebookNames.add(notebookModel.getName());
 			}
-			ListDialogController listDialogRemoveNotebooks = new ListDialogController(
+			CheckBoxListDialogController listDialogRemoveNotebooks = new CheckBoxListDialogController(
 					new RemoveNotebooks(notebooks), this);
 			listDialogRemoveNotebooks.showDialog(getFragmentManager(),
 					notebookNames, "Excluir cadernos", "Excluir");
 			break;
-		case R.id.menu_quit:
+		case android.R.id.home:
+			break;
+		case R.id.quit:
 			finish();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
-	}
-
-	private void showSettingsPage() {
-		Intent intent = new Intent(this, PageSettings.class);
-		Bundle bundle = new Bundle();
-		bundle.putString(ItemDetailFragment.ARG_CONTENT, getIntent()
-				.getStringExtra(ItemDetailFragment.ARG_CONTENT));
-		startActivityForResult(intent, RESULT_SETTINGS);
 	}
 
 	@Override
@@ -278,7 +285,16 @@ public class ItemListActivity extends FragmentActivity implements
 	}
 
 	@Override
-	public void onFinishListDialog(ListCommand command,
+	public void onFinishEditDialog(TextCommand command) {
+		// TODO Auto-generated method stub
+		command.execute();
+		updateNotebooks();
+		mSectionsStatePagerAdapter.setNotebooks(notebooks);
+		mSectionsStatePagerAdapter.notifyDataSetChanged();
+	}
+
+	@Override
+	public void onFinishCheckBoxListDialog(ListCommand command,
 			List<String> selectedItems) {
 		// TODO Auto-generated method stub
 		command.execute(selectedItems);
@@ -291,6 +307,7 @@ public class ItemListActivity extends FragmentActivity implements
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 		// TODO Auto-generated method stub
+		pageSelectedID = arg2;
 		if (DummySectionFragment.lastSelected != null)
 			DummySectionFragment.lastSelected.setBackground(originalBackground);
 		DummySectionFragment.lastSelected = arg1;
@@ -301,7 +318,7 @@ public class ItemListActivity extends FragmentActivity implements
 			// by
 			// adding or replacing the detail fragment using a
 			// fragment transaction.
-			setVisibleMenusPage(true);
+			mSectionsStatePagerAdapter.notifyObservers(true);
 			Bundle arguments = new Bundle();
 			if (notebooks.get(mViewPager.getCurrentItem()).getPages().size() > arg2)
 				arguments.putString(ItemDetailFragment.ARG_CONTENT, notebooks
