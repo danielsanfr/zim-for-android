@@ -115,7 +115,7 @@ public class DummySectionFragment extends Fragment {
 
 		List<String> listItens = getArguments().getStringArrayList(ARG_LIST_ITENS);
 		if(listItens.size() == 0)
-			listItens.add("Nenhum arquivo Encontrado!");
+			listItens.add("Home");
 		
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
 				android.R.layout.simple_list_item_1, listItens);

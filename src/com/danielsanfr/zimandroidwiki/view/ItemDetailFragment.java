@@ -1,13 +1,16 @@
 package com.danielsanfr.zimandroidwiki.view;
 
 import com.danielsanfr.zimandroidwiki.R;
-
+import com.danielsanfr.zimandroidwiki.controller.text.ManageContent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView.BufferType;
 
 /**
  * A fragment representing a single Item detail screen. This fragment is either
@@ -15,7 +18,7 @@ import android.widget.EditText;
  * {@link ItemDetailActivity} on handsets.
  */
 public class ItemDetailFragment extends Fragment {
-	
+
 	private EditText edtText;
 	/**
 	 * The fragment argument representing the item ID that this fragment
@@ -35,14 +38,16 @@ public class ItemDetailFragment extends Fragment {
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_item_detail,
 				container, false);
-		
-		// Show the dummy content as text in a TextView.
-//		if (mItem != null) {
-//			((TextView) rootView.findViewById(R.id.item_detail))
-//					.setText(mItem.content);
-//		}
 		edtText = (EditText) rootView.findViewById(R.id.editText);
-		edtText.setText(getArguments().getString(ARG_CONTENT));
+
+		SpannableStringBuilder refinedContent = new SpannableStringBuilder(
+				getArguments().getString(ARG_CONTENT));
+		ManageContent manageContent = new ManageContent(refinedContent,
+				getActivity());
+		manageContent.generateRefinedContent();
+
+		edtText.setText(refinedContent, BufferType.SPANNABLE);
+//		 edtText.setText(refinedContent);
 
 		return rootView;
 	}

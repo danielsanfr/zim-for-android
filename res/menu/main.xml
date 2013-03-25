@@ -66,7 +66,7 @@
             <item android:id="@+id/word_count" android:title="word count..." />
             <item android:id="@+id/open_the_attachment_folder" android:title="Open the attachment folder" />
             <item android:id="@+id/open_the_folder_notebook" android:title="Open the folder notebook" />
-            <item android:id="@+id/start_web_server" android:title="start web server" />
+            <item android:id="@+id/start_web_server" android:title="Start web server" />
             <item android:id="@+id/assess_math" android:title="Assess math" />
             <item android:id="@+id/edit_source" android:title="Edit source" />
             <item android:id="@+id/sort_lines" android:title="Sort lines" />
